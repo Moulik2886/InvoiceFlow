@@ -1,0 +1,21 @@
+{
+  "name": "invoiceflow",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": ["client", "server"],
+  "scripts": {
+    "dev": "node server/dev.js",
+    "dev:stack": "concurrently -k -n api,web -c cyan,magenta \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "npm run dev --workspace @invoiceflow/server",
+    "dev:web": "npm run dev --workspace @invoiceflow/client",
+    "build": "npm run build --workspace @invoiceflow/client",
+    "test:api": "npm run test:api --workspace @invoiceflow/server",
+    "start": "npm run start --workspace @invoiceflow/server"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.10",
+    "@electric-sql/pglite-socket": "^0.2.13",
+    "concurrently": "^9.2.1"
+  },
+  "engines": { "node": ">=20.19.0" }
+}
